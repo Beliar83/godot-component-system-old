@@ -1,0 +1,11 @@
+﻿@startuml
+!include IComponent.puml
+
+class ComponentRegistry
+{
+	#Components Dictionary<string, PackedScene>
+	+RegisterComponent(string path, bool search in Subdirectories)
+	+Node InstanceComponent(string componentName)
+}
+
+@enduml

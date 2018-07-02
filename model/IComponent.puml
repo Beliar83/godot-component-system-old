@@ -1,0 +1,12 @@
+﻿@startuml
+'' plantumlfile1
+interface IComponent
+{
++string ComponentName
++Dictionary<string, object> GetFields
++SetFields(Dictionary<string, object> fields)
+}
+
+
+
+@enduml

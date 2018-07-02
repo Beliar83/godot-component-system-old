@@ -1,0 +1,8 @@
+﻿@startuml
+
+class ComponentSerializer
+{
+	+Dictionary<string, object> Serialize(Node node)
+	+DeserializeTo(Dictionary<string, object> componentData, Node rootNode)
+}
+@enduml
