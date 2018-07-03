@@ -1,0 +1,16 @@
+﻿@startuml
+
+start
+:ComponentRegistry.RegisterComponent(PackedScene componentScene);
+:Get temporary instance from componentScene;
+if (temporary  instance is IComponent?) then (yes)
+	if (ComponentName is not in Components) then (yes)
+		:Add componentScene to Components\nusing the ComponentName as key;
+	else (no)
+	endif
+else (no)
+endif
+:Delete temporary instance;
+stop
+
+@enduml

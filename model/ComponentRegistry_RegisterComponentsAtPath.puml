@@ -1,0 +1,17 @@
+﻿@startuml
+start
+:ComponentRegistry.RegisterComponentsAtPath(string path, bool searchInSubdirectories);
+:Get items at path as list;
+while (list has more items)
+	if (item is scene file?) then (yes)
+		:Preload scene;
+		:ComponentRegistry.RegisterComponent(scene);
+	elseif (item is folder and searchInSubdirectories is True) then (yes)
+		:ComponentRegistry.RegisterComponentsAtPath(folder, searchInSubdirectories);
+	else (no)
+	endif
+endwhile
+end
+
+
+@enduml
