@@ -4,7 +4,8 @@
 class ComponentRegistry
 {
 	#Components Dictionary<string, PackedScene>
-	+RegisterComponent(string path, bool search in Subdirectories)
+	+RegisterComponent(PackedScene componentScene)
+	+RegisterComponentsAtPath(string path, bool searchInSubdirectories)
 	+Node InstanceComponent(string componentName)
 }
 
