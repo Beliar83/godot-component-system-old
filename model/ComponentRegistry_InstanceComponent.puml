@@ -1,0 +1,12 @@
+﻿@startuml
+start
+	:InstanceComponent(string componentName);
+	if (Is componentName as Key in Components) then (yes)
+		:Get packed scene from  Components;
+		:Get new instance of packed scene;
+		:Return instance;
+	else (no)
+		:return Null;
+	endif
+end
+@enduml

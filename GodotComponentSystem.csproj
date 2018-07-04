@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="model\ComponentRegistry.puml" />
+    <None Include="model\ComponentRegistry_InstanceComponent.puml" />
     <None Include="model\ComponentRegistry_RegisterComponent.puml" />
     <None Include="model\ComponentRegistry_RegisterComponentsAtPath.puml" />
     <None Include="model\ComponentSerializer.puml" />
