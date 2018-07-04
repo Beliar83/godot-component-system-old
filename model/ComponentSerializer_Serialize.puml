@@ -1,0 +1,23 @@
+﻿@startuml
+start
+	'' Dictionary<string, object> Serialize(Node node)
+	:Serialize(Node node);
+	if (Node is IComponent) then (yes)
+		:Call GetFields operation on node;
+		:Return result of GetFields;
+	else (no)
+		:Create new Dictionary;
+		:get child nodes of node;
+		while (more child nodes available)
+			:Call Serialize on child node;
+			if (child node is IComponent) then (yes)
+				:Store ComponentName as key;
+			else (no)
+				:Store name of Node as key;
+			endif
+			:Add return value of Serialize to local Dictionary with stored key;
+		endwhile
+		:return Dictionary;
+	endif
+end
+@enduml
