@@ -61,6 +61,7 @@
     <None Include="model\ComponentRegistry_RegisterComponentsAtPath.puml" />
     <None Include="model\ComponentSerializer.puml" />
     <None Include="model\ComponentSerializer_Serialize.puml" />
+    <None Include="model\ComponentSerializer_DeserializeTo.puml" />
     <None Include="model\IComponent.puml" />
     <None Include="packages.config" />
   </ItemGroup>

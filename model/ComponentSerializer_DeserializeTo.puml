@@ -1,0 +1,26 @@
+﻿@startuml
+'' ComponentSerializer.DeserializeTo
+start
+:DeserializeTo(Dictionary<string, object> componentData, Node rootNode);
+if (rootNode is IComponent) then (yes)
+	:Call rootNode.SetFields(componentData);
+else (no)
+	while (componentData contains more items)
+		:Take next next item (as item) and item name (as itemName) from componentData;		
+		if (rootNode contains child with item name) then (yes)
+			:get child of rootNode with item name;
+			:Call DeserializeTo(item, child);
+		else (no)
+			:Call ComponentRegistry.InstanceComponent(itemName)\n and store return value as newComponent;
+			if (newComponent is not Null) then (yes)
+				:Call newComponent.SetFields(item);
+			else (no)
+				:Log error;
+				end
+			endif
+		endif
+	endwhile
+endif
+end
+
+@enduml
