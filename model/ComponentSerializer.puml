@@ -2,6 +2,8 @@
 
 class ComponentSerializer
 {
+	#ComponentRegistry Registry
+	+ComponentSerializer(ComponentRegistry registry)
 	+Dictionary<string, object> Serialize(Node node)
 	+DeserializeTo(Dictionary<string, object> componentData, Node rootNode)
 }
