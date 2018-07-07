@@ -13,6 +13,7 @@ else (no)
 		else (no)
 			:Call ComponentRegistry.InstanceComponent(itemName)\n and store return value as newComponent;
 			if (newComponent is not Null) then (yes)
+				:Add newComponent to rootNode;
 				:Call newComponent.SetFields(item);
 			else (no)
 				:Log error;
