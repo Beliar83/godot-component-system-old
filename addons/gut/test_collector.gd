@@ -15,32 +15,32 @@ class Test:
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 class TestScript:
-	var class_name = null
+	var inner_class_name = null
 	var tests = []
 	var path = null
 
 	func to_s():
 		var to_return = path
-		if(class_name != null):
-			to_return += str('.', class_name)
+		if(inner_class_name != null):
+			to_return += str('.', inner_class_name)
 		to_return += "\n"
 		for i in range(tests.size()):
 			to_return += str('  ', tests[i].name, "\n")
 		return to_return
 
 	func get_new():
-		var Script = load(path)
+		var new_script = load(path)
 		var inst = null
-		if(class_name != null):
-			inst = Script.get(class_name).new()
+		if(inner_class_name != null):
+			inst = new_script.get(inner_class_name).new()
 		else:
-			inst = Script.new()
+			inst = new_script.new()
 		return inst
 
 	func get_full_name():
 		var to_return = path
-		if(class_name != null):
-			to_return += '.' + class_name
+		if(inner_class_name != null):
+			to_return += '.' + inner_class_name
 		return to_return
 
 # ------------------------------------------------------------------------------
@@ -49,14 +49,15 @@ class TestScript:
 var scripts = []
 var _test_prefix = 'test_'
 var _test_class_prefix = 'Test'
+var TestScriptClass = load('res://addons/gut/test.gd')
 
-func _parse_script(script):
+func _parse_script(a_script):
 	var file = File.new()
 	var line = ""
 	var line_count = 0
 	var inner_classes = []
 
-	file.open(script.path, 1)
+	file.open(a_script.path, 1)
 	while(!file.eof_reached()):
 		line_count += 1
 		line = file.get_line()
@@ -67,28 +68,28 @@ func _parse_script(script):
 			var new_test = Test.new()
 			new_test.name = line.substr(from, line_len)
 			new_test.line_number = line_count
-			script.tests.append(new_test)
+			a_script.tests.append(new_test)
 
 		if(line.begins_with('class ')):
-			var class_name = line.replace('class ', '')
-			class_name = class_name.replace(':', '')
-			if(class_name.begins_with(_test_class_prefix)):
-				inner_classes.append(class_name)
+			var inner_class_name = line.replace('class ', '')
+			inner_class_name = inner_class_name.replace(':', '')
+			if(inner_class_name.begins_with(_test_class_prefix)):
+				inner_classes.append(inner_class_name)
 
 	for i in range(inner_classes.size()):
 		var ts = TestScript.new()
-		ts.path = script.path
-		ts.class_name = inner_classes[i]
+		ts.path = a_script.path
+		ts.inner_class_name = inner_classes[i]
 		if(_parse_inner_class_tests(ts)):
 			scripts.append(ts)
 
 	file.close()
 
-func _parse_inner_class_tests(script):
-	var inst = script.get_new()
+func _parse_inner_class_tests(a_script):
+	var inst = a_script.get_new()
 
-	if(!inst is load('res://addons/gut/test.gd')):
-		print('WARNING Ignoring ' + script.class_name + ' because it does not extend test.gd')
+	if(!inst is TestScriptClass):
+		print('WARNING Ignoring ' + a_script.inner_class_name + ' because it does not extend test.gd')
 		return false
 
 	var methods = inst.get_method_list()
@@ -97,7 +98,7 @@ func _parse_inner_class_tests(script):
 		if(name.begins_with(_test_prefix) and methods[i]['flags'] == 65):
 			var t = Test.new()
 			t.name = name
-			script.tests.append(t)
+			a_script.tests.append(t)
 
 	return true
 # -----------------
