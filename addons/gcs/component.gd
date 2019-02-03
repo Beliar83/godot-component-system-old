@@ -1,4 +1,5 @@
 extends Resource
+class_name Component
 
 export(bool) var modified = false
 

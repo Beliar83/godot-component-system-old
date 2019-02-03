@@ -1,4 +1,4 @@
-extends Node
+extends "res://addons/gcs/baseGameWorld.gd"
 
 const GameObject = preload("gameObject.gd")
 const GameSystem = preload("gameSystem.gd")

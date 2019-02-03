@@ -1,24 +1,31 @@
 extends Node
+class_name GameObject
 
+var world : GameWorld
 var components = Dictionary()
+
+func _init(world : GameWorld):
+	self.world = world
 
 func _ready():
 	pass
 
-func has_component(name : String):
+func has_component(name : String) -> bool:
 	return components.has(name)
 	
-func get_component(name : String):
-	if !has_component(name): # Check exists to keep the log error free.
-		return null
+func get_component(name : String) -> Component:
+	if !has_component(name):
+		if ! world.components.has(name):
+			return null
+		components[name] = world.components[name].new()
 	return components[name]
 	
-func create_and_add_component(component_class : GDScript, name : String):
-	if has_component(name):
-		return null
-	var new_component = component_class.new()
-	components[name] = new_component
-	return new_component
-	
-func _get(property : String):
+func _get(property : String) -> Component:
 	return get_component(property)
+	
+func _set(property : String, value : Component) -> bool:
+	if !world.components.has(property) or !(value is world.components[property]):
+		return false
+	components[name] = value
+	return true
+	
