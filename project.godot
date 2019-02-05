@@ -10,6 +10,16 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Resource",
+"class": "BaseGameObject",
+"language": "GDScript",
+"path": "res://addons/gcs/baseGameObject.gd"
+}, {
+"base": "Node",
+"class": "BaseGameWorld",
+"language": "GDScript",
+"path": "res://addons/gcs/baseGameWorld.gd"
+}, {
+"base": "Resource",
 "class": "Component",
 "language": "GDScript",
 "path": "res://addons/gcs/component.gd"
@@ -17,12 +27,12 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "GameObject",
 "language": "GDScript",
-"path": "res://addons/gcs/baseGameObject.gd"
+"path": "res://addons/gcs/gameObject.gd"
 }, {
 "base": "Node",
 "class": "GameWorld",
 "language": "GDScript",
-"path": "res://addons/gcs/baseGameWorld.gd"
+"path": "res://addons/gcs/gameWorld.gd"
 }, {
 "base": "Resource",
 "class": "TestComponent",
@@ -30,6 +40,8 @@ _global_script_classes=[ {
 "path": "res://test/unit/testComponent.gd"
 } ]
 _global_script_class_icons={
+"BaseGameObject": "",
+"BaseGameWorld": "",
 "Component": "",
 "GameObject": "",
 "GameWorld": "",

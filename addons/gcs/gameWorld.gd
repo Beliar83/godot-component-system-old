@@ -1,5 +1,5 @@
 extends "res://addons/gcs/baseGameWorld.gd"
-
+class_name GameWorld
 
 func _ready():
 	pass

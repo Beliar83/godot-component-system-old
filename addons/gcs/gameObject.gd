@@ -1,8 +1,9 @@
 extends "res://addons/gcs/baseGameObject.gd"
+class_name GameObject
 
-var world : GameWorld
+var world : BaseGameWorld
 
-func _init(world : GameWorld):
+func _init(world : BaseGameWorld):
 	self.world = world
 	world._add_object(self)
 
