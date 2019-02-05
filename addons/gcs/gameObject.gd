@@ -1,11 +1,10 @@
-extends Node
-class_name GameObject
+extends "res://addons/gcs/baseGameObject.gd"
 
 var world : GameWorld
-var components = Dictionary()
 
 func _init(world : GameWorld):
 	self.world = world
+	world._add_object(self)
 
 func _ready():
 	pass
@@ -26,6 +25,6 @@ func _get(property : String) -> Component:
 func _set(property : String, value : Component) -> bool:
 	if !world.components.has(property) or !(value is world.components[property]):
 		return false
-	components[name] = value
+	components[property] = value
 	return true
 	

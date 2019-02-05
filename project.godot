@@ -14,10 +14,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gcs/component.gd"
 }, {
-"base": "Node",
+"base": "Resource",
 "class": "GameObject",
 "language": "GDScript",
-"path": "res://addons/gcs/gameObject.gd"
+"path": "res://addons/gcs/baseGameObject.gd"
 }, {
 "base": "Node",
 "class": "GameWorld",

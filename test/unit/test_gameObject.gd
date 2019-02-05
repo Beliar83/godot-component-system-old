@@ -11,6 +11,12 @@ func before_each():
 	gameWorld = GameWorld.new()
 	gameObject = GameObject.new(gameWorld)
 	
+func test_game_object_is_in_world():
+	gut.p("Test started")
+	assert_has(gameWorld.game_objects.keys(), gameObject.id)
+	assert_has(gameWorld.game_objects.values(), gameObject)
+	gut.p("Test ended")
+
 func test_has_returns_true_on_existing_component():
 	gut.p("Test started")
 	var test_component = TestComponent.new()
