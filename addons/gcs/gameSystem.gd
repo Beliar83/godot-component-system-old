@@ -1,4 +1,4 @@
-extends "res://addons/gcs/baseGameSystem.gd"
+extends BaseGameSystem
 class_name GameSystem
 
 var world : BaseGameWorld

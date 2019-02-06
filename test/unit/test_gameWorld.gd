@@ -5,7 +5,7 @@ var world : GameWorld
 func before_each():
 	world = GameWorld.new()
 	world.components["Test"] = TestComponent
-	
+
 func test_get_objects_with_component_returns_all_components_with_name():
 	gut.p("Test started")
 	var expected_objects = Array()
@@ -30,8 +30,18 @@ func test_get_objects_with_component_returns_all_components_with_name():
 		for component in returned_components:
 			assert_has(expected_objects, component, "Expected both arrays to have the same values")
 	gut.p("Test ended")
-	
+
 func given_map_has_object():
 	var object = GameObject.new(world)
 	var components = Node.new()
 	return object
+
+func test_process_calls_process_on_systems():
+	gut.p("Test started")
+	var test_system = TestSystem.new(world)
+	world.components["Test"] = TestComponent
+	var test_object = GameObject.new(world)
+	test_object.Test.test = 0
+	gut.simulate(world, 1, 0.1)
+	assert_ne(0, test_object.Test.test, "Expected value to have been modified")
+	gut.p("Test ended")

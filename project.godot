@@ -48,6 +48,11 @@ _global_script_classes=[ {
 "class": "TestComponent",
 "language": "GDScript",
 "path": "res://test/unit/testComponent.gd"
+}, {
+"base": "Resource",
+"class": "TestSystem",
+"language": "GDScript",
+"path": "res://test/unit/testSystem.gd"
 } ]
 _global_script_class_icons={
 "BaseGameObject": "",
@@ -57,7 +62,8 @@ _global_script_class_icons={
 "GameObject": "",
 "GameSystem": "",
 "GameWorld": "",
-"TestComponent": ""
+"TestComponent": "",
+"TestSystem": ""
 }
 
 [application]
