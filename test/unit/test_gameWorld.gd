@@ -1,10 +1,5 @@
 extends "res://addons/gut/test.gd"
 
-const GameWorld = preload("res://addons/gcs/gameWorld.gd")
-const GameObject = preload("res://addons/gcs/gameObject.gd")
-const GameSystem = preload("res://addons/gcs/gameSystem.gd")
-const TestComponent = preload("res://test/unit/testComponent.gd")
-
 var world : GameWorld
 
 func before_each():
@@ -40,4 +35,3 @@ func given_map_has_object():
 	var object = GameObject.new(world)
 	var components = Node.new()
 	return object
-	

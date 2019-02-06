@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gcs/baseGameObject.gd"
 }, {
+"base": "Resource",
+"class": "BaseGameSystem",
+"language": "GDScript",
+"path": "res://addons/gcs/baseGameSystem.gd"
+}, {
 "base": "Node",
 "class": "BaseGameWorld",
 "language": "GDScript",
@@ -29,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gcs/gameObject.gd"
 }, {
+"base": "Resource",
+"class": "GameSystem",
+"language": "GDScript",
+"path": "res://addons/gcs/gameSystem.gd"
+}, {
 "base": "Node",
 "class": "GameWorld",
 "language": "GDScript",
@@ -41,9 +51,11 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "BaseGameObject": "",
+"BaseGameSystem": "",
 "BaseGameWorld": "",
 "Component": "",
 "GameObject": "",
+"GameSystem": "",
 "GameWorld": "",
 "TestComponent": ""
 }

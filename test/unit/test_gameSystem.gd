@@ -1,14 +1,13 @@
 extends "res://addons/gut/test.gd"
 
-const GameWorld = preload("res://addons/gcs/gameWorld.gd")
-const GameObject = preload("res://addons/gcs/gameObject.gd")
-const GameSystem = preload("res://addons/gcs/gameSystem.gd")
-
-var world
-var map
+var gameWorld : BaseGameWorld;
+var system : GameSystem
 
 func before_each():
-    map = Node.new()
-    world = GameWorld.new()
-    map.add_child(world)
-    
+	gameWorld = GameWorld.new()
+	system = GameSystem.new(gameWorld)
+
+func test_game_system_is_in_world():
+	gut.p("Test started")
+	assert_has(gameWorld.systems, system)
+	gut.p("Test ended")

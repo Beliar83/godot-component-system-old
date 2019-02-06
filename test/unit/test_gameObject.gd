@@ -1,10 +1,6 @@
 extends "res://addons/gut/test.gd"
 
-const GameWorld = preload("res://addons/gcs/gameWorld.gd")
-const GameObject = preload("res://addons/gcs/gameObject.gd")
-const TestComponent = preload("res://test/unit/testComponent.gd")
-
-var gameWorld : GameWorld;
+var gameWorld : BaseGameWorld;
 var gameObject : GameObject;
 
 func before_each():
