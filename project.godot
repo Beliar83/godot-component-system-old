@@ -45,6 +45,16 @@ _global_script_classes=[ {
 "path": "res://addons/gcs/gameWorld.gd"
 }, {
 "base": "Resource",
+"class": "MovementSystem",
+"language": "GDScript",
+"path": "res://demo/systems/movement.gd"
+}, {
+"base": "Resource",
+"class": "PositionComponent",
+"language": "GDScript",
+"path": "res://demo/components/position.gd"
+}, {
+"base": "Resource",
 "class": "TestComponent",
 "language": "GDScript",
 "path": "res://test/unit/testComponent.gd"
@@ -62,6 +72,8 @@ _global_script_class_icons={
 "GameObject": "",
 "GameSystem": "",
 "GameWorld": "",
+"MovementSystem": "",
+"PositionComponent": "",
 "TestComponent": "",
 "TestSystem": ""
 }
