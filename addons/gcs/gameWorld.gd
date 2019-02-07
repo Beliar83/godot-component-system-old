@@ -8,6 +8,10 @@ func _process(delta : float):
 	for system in systems:
 		system._process(delta)
 
+func _physics_process(delta : float):
+	for system in systems:
+		system._physics_process(delta)
+
 func get_objects_with_component(component) -> Array:
 	var found_objects = Array()
 	for game_object in game_objects.values():

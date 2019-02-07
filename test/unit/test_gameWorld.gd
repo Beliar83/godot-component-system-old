@@ -42,6 +42,16 @@ func test_process_calls_process_on_systems():
 	world.components["Test"] = TestComponent
 	var test_object = GameObject.new(world)
 	test_object.Test.test = 0
-	gut.simulate(world, 1, 0.1)
-	assert_ne(0, test_object.Test.test, "Expected value to have been modified")
+	world._process(0.1)
+	assert_eq(1, test_object.Test.test, "Expected test to be 1")
+	gut.p("Test ended")
+
+func test_process_physics_calls_process_physics_on_systems():
+	gut.p("Test started")
+	var test_system = TestSystem.new(world)
+	world.components["Test"] = TestComponent
+	var test_object = GameObject.new(world)
+	test_object.Test.test = 0
+	world._physics_process(0.1)
+	assert_eq(2, test_object.Test.test, "Expected test to be 2")
 	gut.p("Test ended")
