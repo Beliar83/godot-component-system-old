@@ -6,12 +6,87 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=3
+config_version=4
+
+_global_script_classes=[ {
+"base": "Resource",
+"class": "BaseGameObject",
+"language": "GDScript",
+"path": "res://addons/gcs/baseGameObject.gd"
+}, {
+"base": "Resource",
+"class": "BaseGameSystem",
+"language": "GDScript",
+"path": "res://addons/gcs/baseGameSystem.gd"
+}, {
+"base": "Node",
+"class": "BaseGameWorld",
+"language": "GDScript",
+"path": "res://addons/gcs/baseGameWorld.gd"
+}, {
+"base": "Resource",
+"class": "Component",
+"language": "GDScript",
+"path": "res://addons/gcs/component.gd"
+}, {
+"base": "Resource",
+"class": "GameObject",
+"language": "GDScript",
+"path": "res://addons/gcs/gameObject.gd"
+}, {
+"base": "Resource",
+"class": "GameSystem",
+"language": "GDScript",
+"path": "res://addons/gcs/gameSystem.gd"
+}, {
+"base": "Node",
+"class": "GameWorld",
+"language": "GDScript",
+"path": "res://addons/gcs/gameWorld.gd"
+}, {
+"base": "Resource",
+"class": "MovementSystem",
+"language": "GDScript",
+"path": "res://demo/systems/movement.gd"
+}, {
+"base": "Resource",
+"class": "PositionComponent",
+"language": "GDScript",
+"path": "res://demo/components/position.gd"
+}, {
+"base": "Resource",
+"class": "TestComponent",
+"language": "GDScript",
+"path": "res://test/unit/testComponent.gd"
+}, {
+"base": "Resource",
+"class": "TestSystem",
+"language": "GDScript",
+"path": "res://test/unit/testSystem.gd"
+} ]
+_global_script_class_icons={
+"BaseGameObject": "",
+"BaseGameSystem": "",
+"BaseGameWorld": "",
+"Component": "",
+"GameObject": "",
+"GameSystem": "",
+"GameWorld": "",
+"MovementSystem": "",
+"PositionComponent": "",
+"TestComponent": "",
+"TestSystem": ""
+}
 
 [application]
 
 config/name="GodotComponentSystem"
+run/main_scene="res://demo/DemoScene.tscn"
 config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "gut" )
 
 [rendering]
 
