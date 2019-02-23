@@ -1,3 +1,5 @@
+# Based on the UUID asset (https://godotengine.org/asset-library/asset/81)
+
 static func getRandomInt(max_value : int) -> int:
 	randomize()
 	return randi() % max_value
