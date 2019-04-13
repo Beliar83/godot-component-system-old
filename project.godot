@@ -47,12 +47,12 @@ _global_script_classes=[ {
 "base": "GameSystem",
 "class": "MovementSystem",
 "language": "GDScript",
-"path": "res://addons/gcs/systems/movement.gd"
+"path": "res://demo/systems/movement.gd"
 }, {
 "base": "Component",
 "class": "PositionComponent",
 "language": "GDScript",
-"path": "res://addons/gcs/components/position.gd"
+"path": "res://demo/components/position.gd"
 }, {
 "base": "Resource",
 "class": "TestComponent",
