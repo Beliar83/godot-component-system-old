@@ -29,37 +29,37 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/gcs/component.gd"
 }, {
-"base": "Resource",
+"base": "BaseGameObject",
 "class": "GameObject",
 "language": "GDScript",
 "path": "res://addons/gcs/gameObject.gd"
 }, {
-"base": "Resource",
+"base": "BaseGameSystem",
 "class": "GameSystem",
 "language": "GDScript",
 "path": "res://addons/gcs/gameSystem.gd"
 }, {
-"base": "Node",
+"base": "BaseGameWorld",
 "class": "GameWorld",
 "language": "GDScript",
 "path": "res://addons/gcs/gameWorld.gd"
 }, {
-"base": "Resource",
+"base": "GameSystem",
 "class": "MovementSystem",
 "language": "GDScript",
-"path": "res://demo/systems/movement.gd"
+"path": "res://addons/gcs/systems/movement.gd"
 }, {
-"base": "Resource",
+"base": "Component",
 "class": "PositionComponent",
 "language": "GDScript",
-"path": "res://demo/components/position.gd"
+"path": "res://addons/gcs/components/position.gd"
 }, {
 "base": "Resource",
 "class": "TestComponent",
 "language": "GDScript",
 "path": "res://test/unit/testComponent.gd"
 }, {
-"base": "Resource",
+"base": "GameSystem",
 "class": "TestSystem",
 "language": "GDScript",
 "path": "res://test/unit/testSystem.gd"
@@ -86,7 +86,7 @@ config/icon="res://icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "gut" )
+enabled=PoolStringArray( "gcs", "gut" )
 
 [rendering]
 
