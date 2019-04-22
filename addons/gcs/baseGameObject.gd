@@ -1,5 +1,5 @@
 extends Resource
 class_name BaseGameObject
 
-var components = Dictionary()
+#warning-ignore:unused_class_variable
 var id : String

@@ -1,13 +1,7 @@
 extends Resource
 class_name Component
 
-export(bool) var modified = false
-
-func _ready():
-	pass
-
-func get_serializable_fields() -> Array:
-	return _get_serializable_fields()
-
-func _get_serializable_fields() -> Array:
-	return Array()
+#warning-ignore:unused_class_variable
+var modified = false
+#warning-ignore:unused_class_variable
+var game_object : BaseGameObject

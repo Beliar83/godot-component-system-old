@@ -1,9 +1,6 @@
 extends BaseGameWorld
 class_name GameWorld
 
-func _ready():
-	pass
-	
 func _process(delta : float):
 	for system in systems:
 		system._process(delta)
@@ -19,3 +16,16 @@ func get_objects_with_component(component) -> Array:
 			if game_object.has_component(component):
 				found_objects.append(game_object)
 	return found_objects
+	
+func save(path : String):
+	ResourceSaver.save(path, self)
+	
+func load(path : String) -> bool:
+	if !ResourceLoader.exists(path, "GameWorld"):
+		return false
+	var loaded : GameWorld = ResourceLoader.load(path, "GameWorld")
+	for game_object in loaded.game_objects.values():
+		for component in game_object.components.values():
+			component.modified = true
+		self._add_object(game_object)
+	return true

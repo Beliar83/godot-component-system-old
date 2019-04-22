@@ -6,8 +6,8 @@ func _init(world : GameWorld).(world):
 
 func _process(delta):
 	for game_object in world.get_objects_with_component("position"):
-		var position = game_object.get_component("position")
-		var node = position.node
+		var position : PositionComponent = game_object.get_component("position")
+		var node = world.root_node.get_node(position.node)
 		if node == null:
 			return
 		if position.modified:
