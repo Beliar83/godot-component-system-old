@@ -30,7 +30,6 @@ func _input(event):
 		if event is InputEventMouseButton:
 			if !event.pressed:
 				demo_object.position.vector = event.position
-				demo_object.position.modified = true
 		if event is InputEventKey:
 			var key_event = event as InputEventKey
 			if key_event.scancode == KEY_S:

@@ -25,7 +25,5 @@ func load(path : String) -> bool:
 		return false
 	var loaded : GameWorld = ResourceLoader.load(path, "GameWorld")
 	for game_object in loaded.game_objects.values():
-		for component in game_object.components.values():
-			component.modified = true
 		self._add_object(game_object)
 	return true
