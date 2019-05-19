@@ -7,6 +7,9 @@ func _process(delta : float):
 
 func _physics_process(delta : float):
 	for system in systems:
+		system._before_physics_process(delta)
+	yield(root_node.get_tree(), "idle_frame")
+	for system in systems:
 		system._physics_process(delta)
 
 func get_objects_with_component(component) -> Array:
