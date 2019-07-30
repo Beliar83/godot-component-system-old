@@ -54,15 +54,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://demo/components/position.gd"
 }, {
-"base": "Resource",
+"base": "Component",
 "class": "TestComponent",
 "language": "GDScript",
-"path": "res://test/unit/testComponent.gd"
+"path": "res://tests/unit/testComponent.gd"
+}, {
+"base": "Node",
+"class": "TestNode",
+"language": "GDScript",
+"path": "res://tests/unit/test_node.gd"
 }, {
 "base": "GameSystem",
 "class": "TestSystem",
 "language": "GDScript",
-"path": "res://test/unit/testSystem.gd"
+"path": "res://tests/unit/testSystem.gd"
+}, {
+"base": "Object",
+"class": "TestTree",
+"language": "GDScript",
+"path": "res://tests/unit/test_tree.gd"
+}, {
+"base": "Node",
+"class": "WATTest",
+"language": "GDScript",
+"path": "res://addons/WAT/test/test.gd"
 } ]
 _global_script_class_icons={
 "BaseGameObject": "",
@@ -75,7 +90,10 @@ _global_script_class_icons={
 "MovementSystem": "",
 "PositionComponent": "",
 "TestComponent": "",
-"TestSystem": ""
+"TestNode": "",
+"TestSystem": "",
+"TestTree": "",
+"WATTest": ""
 }
 
 [application]
@@ -86,7 +104,7 @@ config/icon="res://icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "gcs", "gut" )
+enabled=PoolStringArray( "WAT", "gcs" )
 
 [rendering]
 
