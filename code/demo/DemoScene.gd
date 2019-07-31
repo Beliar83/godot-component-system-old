@@ -5,7 +5,6 @@ var demo_world : GameWorld
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#demo_world = ResourceLoader.load("res://demo_object.tres", "GameWorld") as GameWorld
 	demo_world = GameWorld.new()
 	demo_world.components["position"] = PositionComponent
 	demo_world.root_node = self
@@ -22,9 +21,9 @@ func _process(delta):
 	demo_world._process(delta)
 
 func _physics_process(delta):
+	demo_object.position.vector.x += 10 * delta
+	demo_object.position.vector.y += 10 * delta
 	demo_world._physics_process(delta)
-	$"DemoNode".position.x += 10 * delta
-	$"DemoNode".position.y += 10 * delta
 
 func _input(event):
 		if event is InputEventMouseButton:
