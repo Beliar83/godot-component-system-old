@@ -78,7 +78,7 @@ If that failes a new object will be created::
         demo_object = demo_world.DemoObject
 
 And the the node field of game object will be set to the path of
-the "DemoNode"
+the "DemoNode"::
 
         demo_object.node = get_path_to($"DemoNode")
 
