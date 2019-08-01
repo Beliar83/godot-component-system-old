@@ -66,7 +66,7 @@ Next we create a :download:`movement system <../../../code/demo/systems/movement
 
 The world automatically calls the process methods on registered systems.
 
-In the next line the demo tries to load previously stored component data::
+In the next line the demo tries to load a previously stored world state::
 
     if demo_world.load("res://demo_object.tres"):
         demo_object = demo_world.DemoObject
@@ -77,10 +77,10 @@ If that failes a new object will be created::
         demo_world.DemoObject = GameObject.new()
         demo_object = demo_world.DemoObject
 
-And the the node field of its position component will be set to the path of
+And the the node field of game object will be set to the path of
 the "DemoNode"
 
-        demo_object.position.node = get_path_to($"DemoNode")
+        demo_object.node = get_path_to($"DemoNode")
 
 The _process method just calls the _process method of the world.
 
@@ -110,3 +110,61 @@ loaded at the next start of the demo::
         var key_event = event as InputEventKey
         if key_event.scancode == KEY_S:
                 demo_world.save("res://demo_object.tres")
+
+The :download:`position component <../../../code/demo/components/position.gd>`
+does not need much explanation. It is just a class that extends Component and
+defines the fields for the component. Note that the export statement is needed
+for saving to work.
+
+Now we will take a look at the
+:download:`movement system <../../../code/demo/systems/movement.gd>`,
+specifically the _physics_process and _before_physics_process methods.
+
+The _before_physics_process, as the name suggests, is called before
+_physics_process.
+
+In the _before_physics_process we handle copying of the data stored in the
+components to the node.
+First we get get a list all game objects that
+have a specific component attached and iterate over it::
+
+    func _before_physics_process(delta : float):
+        for game_object in world.get_objects_with_component("position"):
+
+Next for each object we first try to get the node from the node path set in
+the game object and return if no node was found::
+
+    var node = world.root_node.get_node(game_object.node)
+        if node == null:
+            return
+
+After that the type of the Node is checked, the movement system supports
+Node2D and Spatial. If the node is either of these types the respective values
+for the type are being set. The movement system itself is 2D, so it only sets
+the x and y values on a Spatial::
+
+    if node is Node2D:
+        node.position = game_object.position.vector
+        node.rotation_degrees = game_object.position.rotation
+    elif node is Spatial:
+        node.translation.x = game_object.position.vector.x
+        node.translation.y = game_object.position.vector.y
+        node.rotation_degrees.y = game_object.position.rotation
+
+The _physics_process method handles copying the node values, to the component.
+This keeps the data in sync with the actual values::
+
+    func _physics_process(delta):
+        for game_object in world.get_objects_with_component("position"):
+            var node = world.root_node.get_node(game_object.node)
+            if node == null:
+                return
+            if node is Node2D:
+                game_object.position.vector = node.position
+                game_object.position.rotation = node.rotation_degrees
+            elif node is Spatial:
+                game_object.position.vector = Vector2(node.translation.x, node.translation.y)
+                game_object.position.rotation = node.rotation_degrees.y
+
+I hope this is enough to get you started and apologize that I am not a
+better tutorial writer.
