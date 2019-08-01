@@ -6,27 +6,25 @@ func _init(world : GameWorld).(world):
 
 func _before_physics_process(delta : float):
 	for game_object in world.get_objects_with_component("position"):
-		var position : PositionComponent = game_object.get_component("position")
-		var node = world.root_node.get_node(position.node)
+		var node = world.root_node.get_node(game_object.node)
 		if node == null:
 			return
 		if node is Node2D:
-			node.position = position.vector
-			node.rotation_degrees = position.rotation
+			node.position = game_object.position.vector
+			node.rotation_degrees = game_object.position.rotation
 		elif node is Spatial:
-			node.translation.x = position.vector.x
-			node.translation.y = position.vector.y
-			node.rotation_degrees.y = position.rotation
+			node.translation.x = game_object.position.vector.x
+			node.translation.y = game_object.position.vector.y
+			node.rotation_degrees.y = game_object.position.rotation
 
 func _physics_process(delta):
 	for game_object in world.get_objects_with_component("position"):
-		var position : PositionComponent = game_object.get_component("position")
-		var node = world.root_node.get_node(position.node)
+		var node = world.root_node.get_node(game_object.node)
 		if node == null:
 			return
 		if node is Node2D:
-			position.vector = node.position
-			position.rotation = node.rotation_degrees
+			game_object.position.vector = node.position
+			game_object.position.rotation = node.rotation_degrees
 		elif node is Spatial:
-			position.vector = Vector2(node.translation.x, node.translation.y)
-			position.rotation = node.rotation_degrees.y
+			game_object.position.vector = Vector2(node.translation.x, node.translation.y)
+			game_object.position.rotation = node.rotation_degrees.y

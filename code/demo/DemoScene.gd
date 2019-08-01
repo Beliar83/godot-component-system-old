@@ -14,7 +14,7 @@ func _ready():
 	else:
 		demo_world.DemoObject = GameObject.new()
 		demo_object = demo_world.DemoObject
-		demo_object.position.node = get_path_to($"DemoNode")
+		demo_object.node = get_path_to($"DemoNode")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
