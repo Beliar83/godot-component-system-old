@@ -4,7 +4,7 @@ class_name MovementSystem
 func _init(world : GameWorld).(world):
 	pass
 
-func _before_physics_process(delta : float):
+func _physics_process(delta : float):
 	for game_object in world.get_objects_with_component("position"):
 		var node = world.root_node.get_node(game_object.node)
 		if node == null:
@@ -17,7 +17,7 @@ func _before_physics_process(delta : float):
 			node.translation.y = game_object.position.vector.y
 			node.rotation_degrees.y = game_object.position.rotation
 
-func _physics_process(delta):
+func _after_physics_process(delta):
 	for game_object in world.get_objects_with_component("position"):
 		var node = world.root_node.get_node(game_object.node)
 		if node == null:

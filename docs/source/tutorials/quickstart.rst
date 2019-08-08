@@ -25,9 +25,11 @@ A game object is a storage for component data.
 Game systems
 ============
 A game system can be used to periodically process component data. It has the
-normal _process, _physics_process methods and also an _before_physics_process
+normal _process, _physics_process methods and also an _after_physics_process
 method.
-The latter can, for example, be used to synchronize data between godot nodes and the game object.
+The latter is basically called after _physics_process is done for every node
+and can, for example, be used to synchronize data between godot nodes and the
+game object.
 
 ============
 Code example
@@ -118,17 +120,17 @@ for saving to work.
 
 Now we will take a look at the
 :download:`movement system <../../../code/demo/systems/movement.gd>`,
-specifically the _physics_process and _before_physics_process methods.
+specifically the _physics_process and _after_physics_process methods.
 
-The _before_physics_process, as the name suggests, is called before
+The _after_physics_process, as the name suggests, is called after
 _physics_process.
 
-In the _before_physics_process we handle copying of the data stored in the
+In the _physics_process we handle copying of the data stored in the
 components to the node.
 First we get get a list all game objects that
 have a specific component attached and iterate over it::
 
-    func _before_physics_process(delta : float):
+    func _physics_process(delta : float):
         for game_object in world.get_objects_with_component("position"):
 
 Next for each object we first try to get the node from the node path set in
@@ -151,10 +153,11 @@ the x and y values on a Spatial::
         node.translation.y = game_object.position.vector.y
         node.rotation_degrees.y = game_object.position.rotation
 
-The _physics_process method handles copying the node values, to the component.
+The _after_physics_process method handles copying the node values, to the
+component.
 This keeps the data in sync with the actual values::
 
-    func _physics_process(delta):
+    func _after_physics_process(delta):
         for game_object in world.get_objects_with_component("position"):
             var node = world.root_node.get_node(game_object.node)
             if node == null:
