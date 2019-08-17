@@ -3,13 +3,13 @@ extends WATTest
 var gameWorld : BaseGameWorld;
 var gameObject : GameObject;
 
-func start():
+func pre():
 	gameWorld = GameWorld.new()
 	gameWorld.TestObject = GameObject.new()
 	gameObject = gameWorld.TestObject
 	
 func test_game_object_is_in_world():
-	expect.has(gameWorld.game_objects.keys(), gameObject.id, "World contains the id of the game object")
+	expect.has(gameObject.id, gameWorld.game_objects.keys(), "World contains the id of the game object")
 	expect.is_equal(gameWorld.game_objects[gameObject.id], gameObject, "Game object stored in world is correct")
 
 func test_has_returns_true_on_existing_component():

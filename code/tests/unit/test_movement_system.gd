@@ -1,6 +1,5 @@
 extends WATTest
 
-
 var world
 var movement_system
 
@@ -24,7 +23,7 @@ func test_process_sets_node2d_values_in_physics_process():
 	node.position.x = 0
 	node.position.y = 0    
 	node.rotation_degrees = 0
-	world.TestObject.position.node = world.root_node.get_path_to(node)
+	world.TestObject.node = world.root_node.get_path_to(node)
 	world.TestObject.position.vector = node.position
 	world.TestObject.position.rotation = node.rotation_degrees
 	var test_x = 100.0
@@ -44,7 +43,7 @@ func test_process_sets_component_values_to_node2d_in_after_physics_process():
 	node.position.x = 0
 	node.position.y = 0    
 	node.rotation_degrees = 0
-	world.TestObject.position.node = world.root_node.get_path_to(node)
+	world.TestObject.node = world.root_node.get_path_to(node)
 	world.TestObject.position.vector = node.position
 	world.TestObject.position.rotation = node.rotation_degrees
 	var test_x = 100.0
@@ -65,7 +64,7 @@ func test_process_sets_spatial_values_in_physics_process():
 	spatial.translation.x = 0.0
 	spatial.translation.y = 0.0
 	spatial.translation.z = 0.0
-	world.TestObject.position.node = world.root_node.get_path_to(spatial)
+	world.TestObject.node = world.root_node.get_path_to(spatial)
 	world.TestObject.position.vector = Vector2(spatial.translation.x, spatial.translation.y)
 	world.TestObject.position.rotation = spatial.rotation_degrees.y
 	var test_x = 100.0
@@ -78,12 +77,11 @@ func test_process_sets_spatial_values_in_physics_process():
 	expect.is_equal(spatial.translation.x, test_x, "X position of spatial was updated")
 	expect.is_equal(spatial.translation.y, test_y, "Y position of spatial was updated")
 	expect.is_equal(spatial.rotation_degrees.y, test_angle, "Rotation of spatial was updated")
-	emit_signal("test_done")
 
 func test_process_sets_component_values_to_spatial_in_after_physics_process():
 	var spatial = Spatial.new()
 	world.root_node.add_child(spatial)
-	world.TestObject.position.node = world.root_node.get_path_to(spatial)
+	world.TestObject.node = world.root_node.get_path_to(spatial)
 	world.TestObject.position.vector = Vector2(spatial.translation.x, spatial.translation.y)
 	world.TestObject.position.rotation = spatial.rotation_degrees.y
 	simulate(world.root_node, 2, 0.1)
