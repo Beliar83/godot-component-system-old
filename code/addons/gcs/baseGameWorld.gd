@@ -9,7 +9,10 @@ var systems = Array()
 var game_objects = Dictionary()
 #warning-ignore:unused_class_variable
 var root_node : Node
-	
+
+signal object_added(object_id)
+signal object_removed(object_id)
+
 func _get_property_list() -> Array:
 	var list = []
 	for id in game_objects.keys():
@@ -28,13 +31,17 @@ func _add_object(game_object : BaseGameObject):
 	while game_object.id == null or game_object.id == "" or (game_objects.has(game_object.id) and game_objects[game_object.id] != game_object):
 		game_object.id = UUID.v4()
 	game_objects[game_object.id] = game_object
+	emit_signal("object_added", game_object.id)
 	game_object.world = self
 
 func _remove_object(game_object : BaseGameObject) -> bool:
 	return _remove_object_by_id(game_object.id)
 
 func _remove_object_by_id(id : String) -> bool:
-	return game_objects.erase(id)
+	if game_objects.erase(id):
+		emit_signal("object_removed", id)
+		return true
+	return false
 
 func _add_system(game_system : BaseGameSystem):
 	systems.append(game_system)

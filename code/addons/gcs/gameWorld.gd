@@ -1,14 +1,21 @@
 extends BaseGameWorld
 class_name GameWorld
 
+signal physics_process(delta)
+signal after_physics_process(delta)
+signal process(delta)
+
 func _process(delta : float):
+	self.emit_signal("process", delta)
 	for system in systems:
 		system._process(delta)
 
 func _physics_process(delta : float):
+	self.emit_signal("physics_process", delta)
 	for system in systems:
 		system._physics_process(delta)
 	yield(root_node.get_tree(), "idle_frame")
+	self.emit_signal("after_physics_process", delta)
 	for system in systems:
 		system._after_physics_process(delta)
 
